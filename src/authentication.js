@@ -2,8 +2,7 @@ require("dotenv").config();
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 
-const { products } = require("../data/products");
-const { getAdmin, getEmployee, getAllEmployees } = require("../db");
+const { getAdmin, getEmployee, getAllEmployees, getAllProduct } = require("../db");
 
 const router = Router();
 
@@ -28,6 +27,8 @@ router.get("/SignIn", async (req, res) => {
   if (employee.length > 0 && admin.length < 1) {
     const token = getToken(employee);
 
+    const products = await getAllProduct()
+
     res.render("dashboard", { token, employee, products });
   } else if (employee.length < 1 && admin.length > 0) {
     const token = getToken(admin);
@@ -36,7 +37,7 @@ router.get("/SignIn", async (req, res) => {
 
     res.render("adminDashboard", { token, admin, employees });
   } else {
-    res.send("Usuario o contrasena incorrecta");
+    res.render("alertIndex")
   }
 });
 

@@ -1,4 +1,3 @@
-const { deleteEmployee } = require("../../db");
 // Modal
 
 // Agrega al carro
@@ -45,5 +44,10 @@ cart.addEventListener("click", () => {
 // Borra Orden
 const deleteButtom = document.querySelector("#deleteCart");
 deleteButtom.addEventListener("click", () => {
+  cartProducts.length = 0;
+});
+
+const printButtom = document.querySelector("#submitCart");
+printButtom.addEventListener("click", () => {
   cartProducts.length = 0;
 });

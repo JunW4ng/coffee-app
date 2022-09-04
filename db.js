@@ -46,6 +46,16 @@ const getAllEmployees = async () => {
   }
 };
 
+const getAllProduct = async () => {
+  const sqlQuery = "SELECT * FROM product";
+  try {
+    const result = await pool.query(sqlQuery);
+    return result.rows;
+  } catch (err) {
+    return err.code;
+  }
+};
+
 const postEmployee = async (email, password, nameEmployee) => {
   const sqlQuery = {
     text: `INSERT INTO empleado (email, password, nombre) VALUES ($1, $2, $3) RETURNING *`,
@@ -77,6 +87,7 @@ module.exports = {
   getAdmin,
   getAllEmployees,
   getEmployee,
+  getAllProduct,
   postEmployee,
   deleteEmployee,
 };

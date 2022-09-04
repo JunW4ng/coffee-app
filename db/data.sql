@@ -24,3 +24,19 @@ CREATE TABLE orden (
     PRIMARY KEY (id),
     FOREIGN KEY (empleado_id) REFERENCES empleado(id)
 );
+
+CREATE TABLE product (
+    id SERIAL,
+    nombre VARCHAR(50) NOT NULL,
+    precio INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO product (nombre, precio) VALUES ('Espresso', 2000)
+INSERT INTO product (nombre, precio) VALUES ('Capuccino', 2200)
+INSERT INTO product (nombre, precio) VALUES ('FlatWhite', 2800)
+INSERT INTO product (nombre, precio) VALUES ('Latte', 2800)
+INSERT INTO product (nombre, precio) VALUES ('Americano', 2100)
+INSERT INTO product (nombre, precio) VALUES ('Filtrados', 2800)
+INSERT INTO product (nombre, precio) VALUES ('Matcha Latte', 3200)
+INSERT INTO product (nombre, precio) VALUES ('Chai Latte', 3700)

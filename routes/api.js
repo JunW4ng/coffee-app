@@ -1,10 +1,21 @@
 const { Router } = require("express");
 const router = Router();
 
-const { getAllEmployees, postEmployee, deleteEmployee } = require("../db");
+const {
+  getAllEmployees,
+  getAllProduct,
+  postEmployee,
+  deleteEmployee,
+} = require("../db");
 
 router.get("/all-employees", async (_req, res) => {
   await getAllEmployees()
+    .then((users) => res.json(users))
+    .catch((err) => res.json(err));
+});
+
+router.get("/all-products", async (_req, res) => {
+  await getAllProduct()
     .then((users) => res.json(users))
     .catch((err) => res.json(err));
 });
