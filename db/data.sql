@@ -17,14 +17,6 @@ CREATE TABLE empleado (
     FOREIGN KEY (admin_local_id) REFERENCES admin_local(id)
 );
 
-CREATE TABLE orden (
-    id SERIAL,
-    total_orden INT NOT NULL,
-    orden_date DATE,
-    PRIMARY KEY (id),
-    FOREIGN KEY (empleado_id) REFERENCES empleado(id)
-);
-
 CREATE TABLE product (
     id SERIAL,
     nombre VARCHAR(50) NOT NULL,
