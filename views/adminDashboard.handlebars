@@ -1,0 +1,25 @@
+{{#each admin}}
+    {{> AdminNavbar admin = this}}
+{{/each}}
+
+{{>EmployeeForm}}
+
+<div class="container mt-5">
+    <div class="row text-center">
+        <div class="col">
+            Nombre
+        </div>
+        <div class="col">
+            Email
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <hr>
+    {{#each employees}}
+        {{> AllEmployees employees = this}}
+    {{/each}} 
+</div>
+
+
+{{> Modal}}

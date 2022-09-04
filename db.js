@@ -46,19 +46,37 @@ const getAllEmployees = async () => {
   }
 };
 
-const postOrder = async (totalOrder) => {
-  console.log(totalOrder);
+const postEmployee = async (email, password, nameEmployee) => {
   const sqlQuery = {
-    text: `INSERT INTO orden (total_orden) VALUES ($1) RETURNING *;`,
-    values: [totalOrder],
+    text: `INSERT INTO empleado (email, password, nombre) VALUES ($1, $2, $3) RETURNING *`,
+    values: [email, password, nameEmployee],
   };
   try {
     const result = await pool.query(sqlQuery);
-    return result;
+    return result.rows;
   } catch (err) {
     console.log(err);
     return err.code;
   }
 };
 
-module.exports = { getAdmin, getAllEmployees, getEmployee, postOrder };
+const deleteEmployee = async (email) => {
+  const sqlQuery = {
+    text: "DELETE FROM empleado WHERE email = $1 RETURNING*",
+    values: [email]
+  };
+  try {
+    const result = await pool.query(sqlQuery);
+    return result.rowCount;
+  } catch (err) {
+    return err.code;
+  }
+};
+
+module.exports = {
+  getAdmin,
+  getAllEmployees,
+  getEmployee,
+  postEmployee,
+  deleteEmployee,
+};

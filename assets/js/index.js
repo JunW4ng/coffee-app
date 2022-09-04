@@ -1,3 +1,4 @@
+const { deleteEmployee } = require("../../db");
 // Modal
 
 // Agrega al carro
@@ -32,7 +33,7 @@ cart.addEventListener("click", () => {
       parseInt(previousValue) + parseInt(currentValue),
     initialValue
   );
-  pushedTotalPrice.push(totalPrice)
+  pushedTotalPrice.push(totalPrice);
 
   modal.innerHTML += `
   <div class="text-center">
@@ -46,12 +47,3 @@ const deleteButtom = document.querySelector("#deleteCart");
 deleteButtom.addEventListener("click", () => {
   cartProducts.length = 0;
 });
-
-// Guarda Orden
-const submitButtom = document.querySelector("#submitCart");
-submitButtom.addEventListener("click", () => {
-  cartProducts.length = 0;
-  console.log(pushedTotalPrice);
-  return pushedTotalPrice
-});
-

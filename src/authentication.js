@@ -2,8 +2,8 @@ require("dotenv").config();
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 
-const { products } = require('../data/products')
-const { getAdmin, getEmployee } = require("../db");
+const { products } = require("../data/products");
+const { getAdmin, getEmployee, getAllEmployees } = require("../db");
 
 const router = Router();
 
@@ -19,17 +19,6 @@ const getToken = (user) => {
   return token;
 };
 
-const getAdminInterface = (email, token) => {
-  const interface = `
-  ${email}
-  <a href="/Secret?token=${token}"> <p> Pagina Admin </p> </a>
-  <script>
-  localStorage.setItem('token', JSON.stringify("${token}"))
-  </script>
-  `;
-  return interface;
-};
-
 router.get("/SignIn", async (req, res) => {
   const { email, password } = req.query;
 
@@ -39,12 +28,13 @@ router.get("/SignIn", async (req, res) => {
   if (employee.length > 0 && admin.length < 1) {
     const token = getToken(employee);
 
-    res.render("dashboard", {token, employee, products});
+    res.render("dashboard", { token, employee, products });
   } else if (employee.length < 1 && admin.length > 0) {
     const token = getToken(admin);
-    const adminInterface = getAdminInterface(email, token);
 
-    res.send(adminInterface);
+    const employees = await getAllEmployees()
+
+    res.render("adminDashboard", { token, admin, employees });
   } else {
     res.send("Usuario o contrasena incorrecta");
   }
