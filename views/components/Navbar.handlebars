@@ -1,0 +1,25 @@
+<nav>
+  <ul class="nav justify-content-end">
+    <li class="nav-item pt-2">
+      <strong> Hola {{employee.nombre}} </strong>
+    </li>
+    <li class="nav-item">
+      <div id="menu" class="container">
+      <img
+        id="cartIcon"
+        src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png"
+        alt="cart-icon"
+        data-bs-toggle="modal"
+        data-bs-target="#cart"
+      />
+    </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/">Salir</a>
+    </li>
+  </ul>
+</nav>
+
+<style>
+  #menu img{ height: 3rem; }
+</style>

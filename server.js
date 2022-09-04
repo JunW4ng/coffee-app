@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { engine } = require("express-handlebars");
 
-const authentication = require("./routes/front");
+const authentication = require("./src/authentication");
 const front = require("./routes/front");
 const api = require('./routes/api')
 
@@ -19,9 +19,10 @@ app.engine(
 );
 
 app.use(express.static("public"));
+app.use("/js", express.static(__dirname + "/assets/js"));
 
-app.use(authentication);
 app.use(front);
 app.use(api);
+app.use(authentication);
 
 app.listen(port, () => console.log(`Escuchando puerto ${port}`));

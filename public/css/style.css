@@ -1,0 +1,39 @@
+.nav {
+    background-color:beige;
+}
+
+/* Mensaje superior */
+.message {
+    background-color: black;
+}
+
+/* Carousel */
+.carouselImg {
+    margin: auto;
+    height: 650px;
+    width: 200px;
+}
+
+/* Newsletter */
+.newLetter {
+    width: 550px;
+}
+
+.newLetter, .letterText{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.letterDiv {
+    background-color: aqua;
+}
+
+/* Footer */
+footer {
+    background-color: beige;
+}
+
+.footer-text, .social-media{
+    vertical-align: middle;
+    display: inline-block;
+}

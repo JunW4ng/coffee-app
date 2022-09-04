@@ -1,5 +1,9 @@
+require("dotenv").config();
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
+
+const { products } = require('../data/products')
+const { getAdmin, getEmployee } = require("../db");
 
 const router = Router();
 
@@ -9,38 +13,41 @@ const getToken = (user) => {
       exp: Math.floor(Date.now() / 1000) + 120,
       data: user,
     },
-    secretKey
+    process.env.JWT_SECRET
   );
 
   return token;
 };
 
-const getUserInterface = (email, token) => {
+const getAdminInterface = (email, token) => {
   const interface = `
   ${email}
-  <a href="/Secret?token=${token}"> <p> Ruta Restringida </p> </a>
+  <a href="/Secret?token=${token}"> <p> Pagina Admin </p> </a>
   <script>
   localStorage.setItem('token', JSON.stringify("${token}"))
   </script>
-  `
-  return interface
-}
+  `;
+  return interface;
+};
 
-router.get("/SignIn", (req, res) => {
+router.get("/SignIn", async (req, res) => {
   const { email, password } = req.query;
 
-  const user = users.results.find(
-    (user) => user.email.includes(email) && user.password.includes(password)
-  );
+  const admin = await getAdmin(email, password);
+  const employee = await getEmployee(email, password);
 
-  if (user) {
-    const token = getToken(user);
-    const interface = getUserInterface(email, token)
+  if (employee.length > 0 && admin.length < 1) {
+    const token = getToken(employee);
 
-    res.send(interface);
+    res.render("dashboard", {token, employee, products});
+  } else if (employee.length < 1 && admin.length > 0) {
+    const token = getToken(admin);
+    const adminInterface = getAdminInterface(email, token);
+
+    res.send(adminInterface);
+  } else {
+    res.send("Usuario o contrasena incorrecta");
   }
-
-  res.send("Usuario o contrasena incorrecta");
 });
 
 module.exports = router;

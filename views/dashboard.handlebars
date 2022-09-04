@@ -1,0 +1,13 @@
+{{#each employee}}
+    {{> Navbar employee = this}}
+{{/each}}
+
+<div class="row row-cols-1 row-cols-md-3 g-4 pt-5 px-5">
+    {{#each products}}
+            {{> Products product = this}}
+    {{/each}} 
+</div>
+
+{{> Modal}}
+
+<script src="/js/index.js"></script>

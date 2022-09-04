@@ -1,0 +1,14 @@
+<div class="col">
+  <div class="card bg-secondary rounded shadow-lg">
+    <div class="card-body text-center">
+      <p class="card-text text-center p-5">{{product.name}}</p>
+      <p class="card-text text-center">{{product.price}}</p>
+      <a
+      onclick="addCart(this.id, this.name)"
+      id="{{product.name}}"
+      name="{{product.price}}"
+      class="btn btn-primary"
+    >Agregar</a>
+    </div>
+  </div>
+</div>
