@@ -22,5 +22,9 @@ Aca estarán todas las vistas y componentes correspondiente a la app.
 ### Archivo db.js
 En este archivo se hacen todos los llamados a la base de datos.
 
-## Archivo server.js
+### Archivo server.js
 Archivo donde se inicializará todo el proyecto.
+
+# VIDEOS
+Reflexión del proyecto - https://www.youtube.com/watch?v=SAh4bEcL8VE&ab_channel=Jun
+Demo del proyecto - https://www.youtube.com/watch?v=5OsAeIfREk4&ab_channel=JunWang
